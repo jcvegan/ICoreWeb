@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EF770ABC-DFF0-47D6-BEF9-63C8CD28D059}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{2EF217D2-06E7-454E-8838-A3282951A69A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICoreWebApp.Core.Web", "src\core\ICoreWebApp.Core.Web\ICoreWebApp.Core.Web.csproj", "{A6090A41-BB38-46AC-8AEE-E2C532F919EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Debug|x64.Build.0 = Debug|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Release|x64.ActiveCfg = Release|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Release|x64.Build.0 = Release|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2EF217D2-06E7-454E-8838-A3282951A69A} = {EF770ABC-DFF0-47D6-BEF9-63C8CD28D059}
+		{A6090A41-BB38-46AC-8AEE-E2C532F919EB} = {2EF217D2-06E7-454E-8838-A3282951A69A}
+	EndGlobalSection
+EndGlobal
