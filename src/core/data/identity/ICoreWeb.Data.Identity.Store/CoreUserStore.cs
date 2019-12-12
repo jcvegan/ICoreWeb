@@ -35,6 +35,23 @@ namespace ICoreWeb.Data.Identity.Store
 
             cancellationToken.ThrowIfCancellationRequested();
 
+            user.Id = Guid.NewGuid();
+
+            using (var transaction = _identityDbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    _identityDbContext.Users.Add(user);
+
+                    await _identityDbContext.SaveChangesAsync(cancellationToken);
+                    await transaction.CommitAsync(cancellationToken);
+                }
+                catch (Exception exc)
+                {
+                    await transaction.RollbackAsync(cancellationToken);
+                }
+            }
+            
 
             return await Task.FromResult(result);
         }
@@ -207,6 +224,18 @@ namespace ICoreWeb.Data.Identity.Store
         public Task<string> GetFullName(CoreUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+
+        private async Task<CoreUserClaim> CreateGivenNameClaim(CoreUser user, CancellationToken cancellationToken = new CancellationToken())
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var givenNameClaim = new CoreUserClaim();
+            givenNameClaim.UserId = user.Id;
+            givenNameClaim.ClaimType = 
+            givenNameClaim.ClaimValue = user.FirstName;
+            return givenNameClaim;
         }
     }
 }
