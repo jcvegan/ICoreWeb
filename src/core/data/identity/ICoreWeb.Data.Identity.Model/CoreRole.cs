@@ -10,6 +10,6 @@ namespace ICoreWeb.Data.Identity.Model
 {
     public class CoreRole : IdentityRole<Guid>
     {
-        
+        public string Description { get; set; }
     }
 }
