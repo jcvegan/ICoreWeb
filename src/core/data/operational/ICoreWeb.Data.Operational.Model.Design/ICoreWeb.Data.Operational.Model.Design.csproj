@@ -6,11 +6,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ICoreWeb.Data.Operational.Db.Interface\ICoreWeb.Data.Operational.Db.Interface.csproj" />
-    <ProjectReference Include="..\ICoreWeb.Data.Operational.Model.Design\ICoreWeb.Data.Operational.Model.Design.csproj" />
     <ProjectReference Include="..\ICoreWeb.Data.Operational.Model\ICoreWeb.Data.Operational.Model.csproj" />
   </ItemGroup>
 

@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExtCore.Data.Abstractions" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ICoreWeb.Data.Identity.Db\ICoreWeb.Data.Identity.Db.csproj" />
     <ProjectReference Include="..\ICoreWeb.Data.Identity.Model\ICoreWeb.Data.Identity.Model.csproj" />
   </ItemGroup>
 
