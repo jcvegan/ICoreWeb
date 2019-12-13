@@ -30,4 +30,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Views\Roles\" />
+  </ItemGroup>
+
 </Project>
