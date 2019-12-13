@@ -16,7 +16,7 @@ namespace ICoreWebApp.Core.Web.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<CoreUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger,UserManager<CoreUser> userManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<CoreUser> userManager)
         {
             _logger = logger;
             _userManager = userManager;
@@ -24,7 +24,7 @@ namespace ICoreWebApp.Core.Web.Controllers
 
         public IActionResult Index()
         {
-            _userManager.CreateAsync(new CoreUser(){ UserName = "jcvegan", FirstName = "Juan Carlos", LastName = "Vega Neira"}, "#JuCaVeNe191188+").GetAwaiter().GetResult();
+           //_userManager.CreateAsync(new CoreUser(){ UserName = "jcvegan", FirstName = "Juan Carlos", LastName = "Vega Neira"}, "#JuCaVeNe191188+").GetAwaiter().GetResult();
             return View();
         }
 

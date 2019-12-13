@@ -59,6 +59,10 @@ namespace ICoreWeb.Data.Identity.Store
                 catch (Exception exc)
                 {
                     await transaction.RollbackAsync(cancellationToken);
+                    result = IdentityResult.Failed(new IdentityError[]
+                    {
+                        new IdentityError(){}
+                    });
                 }
             }
             
@@ -150,7 +154,7 @@ namespace ICoreWeb.Data.Identity.Store
             throw new NotImplementedException();
         }
 
-        public override IQueryable<CoreUser> Users { get; }
+        public override IQueryable<CoreUser> Users => _identityDbContext.Users.AsQueryable();
 
         public override Task AddLoginAsync(CoreUser user, UserLoginInfo login, CancellationToken cancellationToken = new CancellationToken())
         {
