@@ -66,6 +66,7 @@ namespace ICoreWebApp.Core.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute("defaultIdentity", "Identity", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
 
             app.UseExtCore();
