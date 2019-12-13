@@ -32,7 +32,7 @@ namespace ICoreWebApp.Core.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CoreDbContext>(options => options.UseInMemoryDatabase("Identity"));
+            services.AddDbContext<CoreDbContext>(options => options.UseSqlite("Data Source=Identity.db;"));
 
             services.AddIdentity<CoreUser, CoreRole>().AddEntityFrameworkStores<CoreDbContext>()
                 .AddDefaultTokenProviders();

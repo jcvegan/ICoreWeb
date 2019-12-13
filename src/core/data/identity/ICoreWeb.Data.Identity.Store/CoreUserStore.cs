@@ -43,6 +43,16 @@ namespace ICoreWeb.Data.Identity.Store
                 {
                     _identityDbContext.Users.Add(user);
 
+                    var givenNameClaim = await CreateGivenNameClaimAsync(user, cancellationToken);
+
+                    if(givenNameClaim != null)
+                        _identityDbContext.UserClaims.Add(givenNameClaim);
+
+                    var familyNameClaim = await CreateFamilyNameClaimAsync(user, cancellationToken);
+
+                    if(familyNameClaim != null)
+                        _identityDbContext.UserClaims.Add(familyNameClaim);
+
                     await _identityDbContext.SaveChangesAsync(cancellationToken);
                     await transaction.CommitAsync(cancellationToken);
                 }
@@ -227,15 +237,37 @@ namespace ICoreWeb.Data.Identity.Store
         }
 
 
-        private async Task<CoreUserClaim> CreateGivenNameClaim(CoreUser user, CancellationToken cancellationToken = new CancellationToken())
+        private async Task<CoreUserClaim> CreateGivenNameClaimAsync(CoreUser user, CancellationToken cancellationToken = new CancellationToken())
         {
             cancellationToken.ThrowIfCancellationRequested();
 
+            var createdTime = DateTime.UtcNow;
+
             var givenNameClaim = new CoreUserClaim();
+
             givenNameClaim.UserId = user.Id;
-            givenNameClaim.ClaimType = 
+            givenNameClaim.ClaimType = "given_name";
             givenNameClaim.ClaimValue = user.FirstName;
+            givenNameClaim.CreatedTime = createdTime;
+            givenNameClaim.LastUpdatedTme = createdTime;
+
             return givenNameClaim;
+        }
+        private async Task<CoreUserClaim> CreateFamilyNameClaimAsync(CoreUser user, CancellationToken cancellationToken = new CancellationToken())
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var createdTime = DateTime.UtcNow;
+
+            var familyNameClaim = new CoreUserClaim();
+
+            familyNameClaim.UserId = user.Id;
+            familyNameClaim.ClaimType = "family_name";
+            familyNameClaim.ClaimValue = user.LastName;
+            familyNameClaim.CreatedTime = createdTime;
+            familyNameClaim.LastUpdatedTme = createdTime;
+
+            return familyNameClaim;
         }
     }
 }

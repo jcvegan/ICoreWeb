@@ -10,6 +10,7 @@ namespace ICoreWeb.Data.Identity.Model
 {
     public class CoreUserClaim : IdentityUserClaim<Guid>
     {
-        
+        public DateTime CreatedTime { get; set; }
+        public DateTime LastUpdatedTme { get; set; }
     }
 }
