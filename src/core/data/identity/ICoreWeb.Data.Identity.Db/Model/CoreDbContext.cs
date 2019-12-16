@@ -14,6 +14,9 @@ namespace ICoreWeb.Data.Identity.Db.Model
     public class CoreDbContext : IdentityDbContext<CoreUser, CoreRole, Guid, CoreUserClaim, CoreUserRole, CoreUserLogin,
         CoreRoleClaim, CoreUserToken>, IStorageContext
     {
+
+        public DbSet<CorePermissionCategory> PermissionCategories { get; set; }
+
         public CoreDbContext(DbContextOptions<CoreDbContext> options) : base(options)
         {
             

@@ -1,0 +1,37 @@
+﻿@model ICoreWebApp.Core.Web.Areas.Identity.Models.PermissionCategories.CreateModel
+@{
+    Layout = "_Layout";
+}
+<div class="ks-page-header">
+    <section class="ks-title">
+        <h3>Permission Categories</h3>
+    </section>
+</div>
+<div class="ks-page-content">
+    <div class="ks-page-content-body">
+        <div class="ks-nav-body-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-6 col-md-9 col-sm-12 col-xs-12 ks-panels-column-section">
+                        <div class="card">
+                            <div class="card-block">
+                                <h5 class="card-title">Create Category</h5>
+                                <form method="post" asp-action="Create" asp-controller="PermissionCategories">
+                                    <div class="form-group row">
+                                        <label for="default-input" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 hidden-xs-up form-control-label">Name</label>
+                                        <div class="col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" asp-for="Name" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <button type="submit" class="btn btn-primary ks-rounded">Create Category</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ExtCore.WebApplication.Extensions;
 using ICoreWeb.Data.Identity.Db.Model;
+using ICoreWeb.Data.Identity.Manager;
 using ICoreWeb.Data.Identity.Model;
 using ICoreWeb.Data.Identity.Store;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +38,8 @@ namespace ICoreWebApp.Core.Web
             services.AddIdentity<CoreUser, CoreRole>().AddEntityFrameworkStores<CoreDbContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<IUserStore<CoreUser>, CoreUserStore>();
+            services.AddTransient<IRoleStore<CoreRole>, CoreRoleStore>();
+            services.AddTransient<CoreRoleManager>();
             services.AddExtCore(_extensionPath);
             services.AddControllersWithViews();
         }
