@@ -16,5 +16,13 @@ namespace ICoreWeb.Data.Identity.Manager.Interface
             string description,
             string categoryName,
             CancellationToken cancellationToken);
+
+        Task<bool> ExistsCategoryAsync(
+            string name,
+            CancellationToken cancellationToken = new CancellationToken());
+
+        Task CreateCategoryAsync(
+            string name,
+            CancellationToken cancellationToken = new CancellationToken());
     }
 }

@@ -3,6 +3,7 @@
 // PermissionCategoriesController.cs
 // Todos los derechos reservados
 
+using System.Threading.Tasks;
 using ICoreWeb.Data.Identity.Manager;
 using ICoreWebApp.Core.Web.Areas.Identity.Models.PermissionCategories;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
 
         [Route("Create")]
         [HttpPost]
-        public IActionResult Create([FromBody] CreateModel model)
+        public async Task<IActionResult> Create(CreateModel model)
         {
             return RedirectToAction("Index");
         }

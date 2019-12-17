@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ICoreWeb.Data.Identity.Model\ICoreWeb.Data.Identity.Model.csproj" />
     <ProjectReference Include="..\ICoreWeb.Data.Identity.Service.Model\ICoreWeb.Data.Identity.Service.Model.csproj" />
   </ItemGroup>
 

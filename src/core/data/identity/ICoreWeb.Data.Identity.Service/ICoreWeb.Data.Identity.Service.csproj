@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ICoreWeb.Data.Identity.Manager\ICoreWeb.Data.Identity.Manager.csproj" />
     <ProjectReference Include="..\ICoreWeb.Data.Identity.Model\ICoreWeb.Data.Identity.Model.csproj" />
     <ProjectReference Include="..\ICoreWeb.Data.Identity.Service.Interface\ICoreWeb.Data.Identity.Service.Interface.csproj" />
   </ItemGroup>

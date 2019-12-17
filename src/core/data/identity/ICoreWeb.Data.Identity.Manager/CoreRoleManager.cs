@@ -43,6 +43,18 @@ namespace ICoreWeb.Data.Identity.Manager
 
         }
 
+        public async Task<bool> ExistsCategoryAsync(string name, CancellationToken cancellationToken = new CancellationToken())
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            return await CoreStore.ExistsCategoryAsync(name, cancellationToken);
+
+        }
+
+        public async Task CreateCategoryAsync(string name, CancellationToken cancellationToken = new CancellationToken())
+        {
+            await CoreStore.CreateCategorPermissionyByNameAsync(name, cancellationToken);
+        }
+
         internal ICoreRoleStore CoreStore => (ICoreRoleStore) base.Store;
     }
 }
