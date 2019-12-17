@@ -11,6 +11,8 @@ namespace ICoreWeb.Data.Identity.Manager.Interface
 {
     public interface ICoreRoleManager
     {
+        Task<IdentityResult> CreatePermissionCategoryAsync(string categoryName,
+            CancellationToken cancellationToken = new CancellationToken());
         Task<IdentityResult> CreatePermissionAsync(
             string name,
             string description,

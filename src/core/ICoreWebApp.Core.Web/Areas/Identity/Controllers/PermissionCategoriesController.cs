@@ -36,7 +36,8 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateModel model)
         {
-            return RedirectToAction("Index");
+            await _roleManager.CreatePermissionCategoryAsync(model.Name);
+            return await Task.Run<IActionResult>(() => RedirectToAction("Index"));
         }
     }
 }

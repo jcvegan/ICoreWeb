@@ -3,6 +3,7 @@
 // CoreRoleManager.cs
 // Todos los derechos reservados
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,6 +26,24 @@ namespace ICoreWeb.Data.Identity.Manager
         {
 
         }
+
+        public async Task<IdentityResult> CreatePermissionCategoryAsync(string categoryName, CancellationToken cancellationToken = new CancellationToken())
+        {
+            try
+            {
+                var existsCategory = await CoreStore.ExistsCategoryAsync(categoryName, cancellationToken);
+
+                if (!existsCategory)
+                    await CoreStore.CreateCategorPermissionyByNameAsync(categoryName, cancellationToken);
+
+                return await Task.FromResult(IdentityResult.Success);
+            }
+            catch (Exception exc)
+            {
+                return await Task.FromResult(IdentityResult.Failed());
+            }
+        }
+
         public async Task<IdentityResult> CreatePermissionAsync(string name, string description, string categoryName, CancellationToken cancellationToken = new CancellationToken())
         {
             cancellationToken.ThrowIfCancellationRequested();
