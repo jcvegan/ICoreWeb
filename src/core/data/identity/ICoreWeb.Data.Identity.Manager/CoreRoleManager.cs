@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ICoreWeb.Data.Identity.Manager.Interface;
@@ -73,6 +74,8 @@ namespace ICoreWeb.Data.Identity.Manager
         {
             await CoreStore.CreateCategorPermissionyByNameAsync(name, cancellationToken);
         }
+
+        public IQueryable<CorePermissionCategory> Categories => CoreStore.PermissionCategory;
 
         internal ICoreRoleStore CoreStore => (ICoreRoleStore) base.Store;
     }

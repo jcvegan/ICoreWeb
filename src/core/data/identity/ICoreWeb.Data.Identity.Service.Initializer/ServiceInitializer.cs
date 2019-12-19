@@ -9,6 +9,7 @@ using ICoreWeb.Data.Identity.Db.Model;
 using ICoreWeb.Data.Identity.Manager;
 using ICoreWeb.Data.Identity.Model;
 using ICoreWeb.Data.Identity.Service.Initializer.Logging;
+using ICoreWeb.Data.Identity.Service.Interface;
 using ICoreWeb.Data.Identity.Store;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,16 +19,17 @@ namespace ICoreWeb.Data.Identity.Service.Initializer
 {
     public static class ServiceInitializer
     {
-        public static IServiceCollection AddCoreService(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
+        public static IServiceCollection AddCoreServices(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
         {
             services.AddDbContext<CoreDbContext>(options);
 
             services.AddIdentity<CoreUser,CoreRole>().AddEntityFrameworkStores<CoreDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransientWithInterception<IUserStore<CoreUser>, CoreUserStore>(m => m.InterceptBy<LoggingFact>());
-            services.AddTransientWithInterception<IRoleStore<CoreRole>, CoreRoleStore>(m => m.InterceptBy<LoggingFact>());
-            services.AddTransientWithInterception<CoreRoleManager,CoreRoleManager>(m => m.InterceptBy<LoggingFact>());
+            services.AddTransient<IUserStore<CoreUser>, CoreUserStore>();
+            services.AddTransient<IRoleStore<CoreRole>, CoreRoleStore>();
+            services.AddTransient<CoreRoleManager>();
+            services.AddTransient<IPermissionCategoryDataService, PermissionCategoryDataService>();
             return services;
         }
     }

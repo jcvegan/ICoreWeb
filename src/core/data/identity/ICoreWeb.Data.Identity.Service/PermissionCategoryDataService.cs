@@ -38,7 +38,7 @@ namespace ICoreWeb.Data.Identity.Service
 
         public async Task<IEnumerable<CorePermissionCategory>> GetCategoriesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new System.NotImplementedException();
+            return await Task.FromResult(_coreRoleManager.Categories);
         }
     }
 }

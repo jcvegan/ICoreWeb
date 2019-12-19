@@ -3,8 +3,10 @@
 // ICoreRoleManager.cs
 // Todos los derechos reservados
 
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ICoreWeb.Data.Identity.Model;
 using Microsoft.AspNetCore.Identity;
 
 namespace ICoreWeb.Data.Identity.Manager.Interface
@@ -26,5 +28,7 @@ namespace ICoreWeb.Data.Identity.Manager.Interface
         Task CreateCategoryAsync(
             string name,
             CancellationToken cancellationToken = new CancellationToken());
+
+        IQueryable<CorePermissionCategory> Categories { get; }
     }
 }

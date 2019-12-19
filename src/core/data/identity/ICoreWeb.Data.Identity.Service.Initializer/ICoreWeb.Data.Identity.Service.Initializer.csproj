@@ -16,6 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ICoreWeb.Data.Identity.Db\ICoreWeb.Data.Identity.Db.csproj" />
     <ProjectReference Include="..\ICoreWeb.Data.Identity.Manager\ICoreWeb.Data.Identity.Manager.csproj" />
+    <ProjectReference Include="..\ICoreWeb.Data.Identity.Service.Interface\ICoreWeb.Data.Identity.Service.Interface.csproj" />
+    <ProjectReference Include="..\ICoreWeb.Data.Identity.Service\ICoreWeb.Data.Identity.Service.csproj" />
     <ProjectReference Include="..\ICoreWeb.Data.Identity.Store\ICoreWeb.Data.Identity.Store.csproj" />
   </ItemGroup>
 

@@ -1,16 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ExtCore.WebApplication.Extensions;
-using ICoreWeb.Data.Identity.Db.Model;
-using ICoreWeb.Data.Identity.Manager;
-using ICoreWeb.Data.Identity.Model;
-using ICoreWeb.Data.Identity.Store;
+using ICoreWeb.Data.Identity.Service.Initializer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,13 +24,7 @@ namespace ICoreWebApp.Core.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CoreDbContext>(options => options.UseSqlite("Data Source=Identity.db;"));
-
-            services.AddIdentity<CoreUser, CoreRole>().AddEntityFrameworkStores<CoreDbContext>()
-                .AddDefaultTokenProviders();
-            services.AddTransient<IUserStore<CoreUser>, CoreUserStore>();
-            services.AddTransient<IRoleStore<CoreRole>, CoreRoleStore>();
-            services.AddTransient<CoreRoleManager>();
+            services.AddCoreServices(options => options.UseSqlite("Data Source=Identity.db;"));
             services.AddExtCore(_extensionPath);
             services.AddControllersWithViews();
         }

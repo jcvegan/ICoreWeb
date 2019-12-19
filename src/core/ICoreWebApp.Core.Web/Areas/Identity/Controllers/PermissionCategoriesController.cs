@@ -5,6 +5,7 @@
 
 using System.Threading.Tasks;
 using ICoreWeb.Data.Identity.Manager;
+using ICoreWeb.Data.Identity.Service.Interface;
 using ICoreWebApp.Core.Web.Areas.Identity.Models.PermissionCategories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,11 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
     [Route("[area]/Permissions/Categories")]
     public class PermissionCategoriesController : Controller
     {
-        private readonly CoreRoleManager _roleManager;
+        private readonly IPermissionCategoryDataService _permissionCategoryDataService;
 
-        public PermissionCategoriesController(CoreRoleManager roleManager)
+        public PermissionCategoriesController(IPermissionCategoryDataService permissionCategoryDataService)
         {
-            _roleManager = roleManager;
+            _permissionCategoryDataService = permissionCategoryDataService;
         }
 
         public IActionResult Index()
@@ -36,7 +37,7 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateModel model)
         {
-            await _roleManager.CreatePermissionCategoryAsync(model.Name);
+            await _permissionCategoryDataService.CreateAsync(model.Name);
             return await Task.Run<IActionResult>(() => RedirectToAction("Index"));
         }
     }
