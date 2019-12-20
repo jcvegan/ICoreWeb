@@ -30,6 +30,7 @@ namespace ICoreWeb.Data.Identity.Service.Initializer
             services.AddTransient<IRoleStore<CoreRole>, CoreRoleStore>();
             services.AddTransient<CoreRoleManager>();
             services.AddTransient<IPermissionCategoryDataService, PermissionCategoryDataService>();
+            services.AddTransient<IPermissionDataService, PermissionDataService>();
             return services;
         }
     }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ICoreWebApp.Core.Web.Areas.Identity.Models.Permissions.CreateModel
+@{
     Layout = "_Layout";
 }
 <div class="ks-page-header">
@@ -17,100 +18,26 @@
                                 <h5 class="card-title">Create Permisssion</h5>
                                 <form method="post" asp-action="Create">
                                     <div class="form-group row">
-                                        <label for="default-input" class="col-sm-2 form-control-label">Default input</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="default-input" placeholder="Default input">
+                                        <label asp-for="CategoryId" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 hidden-xs-up form-control-label">Category</label>
+                                        <div class="col-sm-10 col-xs-12">
+                                            <select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))"></select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="disabled-input" class="col-sm-2 form-control-label">Disabled input</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" disabled="" id="disabled-input" placeholder="Disabled input">
+                                        <label asp-for="Name" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 hidden-xs-up form-control-label">Name</label>
+                                        <div class="col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Name" asp-for="Name">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="readonly-input" class="col-sm-2 form-control-label">Readonly input</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" readonly="" id="readonly-input" placeholder="Readonly input">
+                                        <label asp-for="Description" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 hidden-xs-up form-control-label">Description</label>
+                                        <div class="col-sm-10 col-xs-12">
+                                            <textarea class="form-control" asp-for="Description"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="active-input" class="col-sm-2 form-control-label">Active input</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control active" id="active-input" placeholder="Active">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 form-control-label">Static</label>
-                                        <div class="col-sm-10">
-                                            <p class="form-control-static">email@example.com</p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="default-input-rounded" class="col-sm-2 form-control-label">Default input</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control ks-rounded" id="default-input-rounded" placeholder="Default rounded input">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="default-input-rounded" class="col-sm-2 form-control-label">Textarea</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" placeholder="Textarea"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="default-input-rounded" class="col-sm-2 form-control-label">Select</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control">
-                                                <option>Select</option>
-                                                <option>Select</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="default-input-rounded" class="col-sm-2 form-control-label">File Input</label>
-                                        <div class="col-sm-10">
-                                            <label class="btn btn-primary ks-btn-file">
-                                                <span class="la la-cloud-upload ks-icon"></span>
-                                                <span class="ks-text">Choose file</span>
-                                                <input type="file">
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 form-control-label p-t-0">Checkboxes</label>
-                                        <div class="col-sm-10">
-                                            <div class="custom-control custom-checkbox">
-                                                <input id="c1" type="checkbox" class="custom-control-input">
-                                                <label class="custom-control-label" for="c1">Custom checkbox</label>
-                                            </div>
-
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input id="c2" type="checkbox" class="custom-control-input" checked="">
-                                                <label class="custom-control-label" for="c2">Custom checkbox</label>
-                                            </div>
-
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input id="c3" type="checkbox" class="custom-control-input" disabled="">
-                                                <label class="custom-control-label" for="c3">Custom checkbox</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 form-control-label p-t-0">Radios</label>
-                                        <div class="col-sm-10">
-                                            <div class="custom-control custom-radio">
-                                                <input id="c4" name="radio" type="radio" class="custom-control-input">
-                                                <label class="custom-control-label" for="c4">Custom radio</label>
-                                            </div>
-                                            <div class="custom-control custom-radio mt-3">
-                                                <input id="c5" name="radio" type="radio" class="custom-control-input" checked="">
-                                                <label class="custom-control-label" for="c5">Custom radio</label>
-                                            </div>
-                                            <div class="custom-control custom-radio mt-3">
-                                                <input id="c6" name="radio" type="radio" class="custom-control-input" disabled="">
-                                                <label class="custom-control-label" for="c6">Custom radio</label>
-                                            </div>
+                                    <div class="form-group">
+                                        <div class="col-xl-offset-2 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                                            <button type="submit" class="btn btn-success">Create Permission</button>
                                         </div>
                                     </div>
                                 </form>

@@ -3,7 +3,10 @@
 // PermissionsController.cs
 // Todos los derechos reservados
 
+using System.Threading.Tasks;
 using ICoreWeb.Data.Identity.Manager;
+using ICoreWeb.Data.Identity.Service.Interface;
+using ICoreWebApp.Core.Web.Areas.Identity.Models.Permissions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
@@ -12,11 +15,13 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
     [Route("[area]/[controller]")]
     public class PermissionsController : Controller
     {
-        private readonly CoreRoleManager _roleManager;
+        private readonly IPermissionCategoryDataService _permissionCategoryDataService;
+        private readonly IPermissionDataService _permissionDataService;
 
-        public PermissionsController(CoreRoleManager roleManager)
+        public PermissionsController(IPermissionCategoryDataService permissionCategoryDataService, IPermissionDataService permissionDataService)
         {
-            _roleManager = roleManager;
+            _permissionCategoryDataService = permissionCategoryDataService;
+            _permissionDataService = permissionDataService;
         }
 
         [Route("")]
@@ -26,9 +31,20 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
         }
 
         [Route("Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var model = new CreateModel();
+
+            model.Categories = await _permissionCategoryDataService.GetCategoriesAsync();
+
+            return await Task.Run(() => View(model));
+        }
+
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create(CreateModel model)
+        {
+            await _permissionDataService.CreateAsync(model.CategoryId, model.Name, model.Description);
+            return await Task.Run(() => RedirectToAction(""));
         }
     }
 }

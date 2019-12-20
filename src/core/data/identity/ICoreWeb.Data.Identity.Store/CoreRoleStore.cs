@@ -98,6 +98,8 @@ namespace ICoreWeb.Data.Identity.Store
 
         }
 
+        public IQueryable<CorePermissionCategory> PermissionCategory => _dbContext.PermissionCategories.AsQueryable();
+
         public async Task<bool> ExistsPermissionAsync(string name, string categoryName, CancellationToken cancellationToken = new CancellationToken())
         {
             return await ExistsCategoryAsync(categoryName, cancellationToken);

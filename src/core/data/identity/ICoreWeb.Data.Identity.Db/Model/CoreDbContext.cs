@@ -16,6 +16,7 @@ namespace ICoreWeb.Data.Identity.Db.Model
     {
 
         public DbSet<CorePermissionCategory> PermissionCategories { get; set; }
+        public DbSet<CorePermission> Permissions { get; set; }
 
         public CoreDbContext(DbContextOptions<CoreDbContext> options) : base(options)
         {
