@@ -24,9 +24,10 @@ namespace ICoreWebApp.Core.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCoreServices(options => options.UseSqlite("Data Source=Identity.db;"));
+            services.AddCoreServices(options => options.UseSqlServer("Data Source=(local);Initial Catalog=IWebCore;User ID=sa;Password=juancarlos1911+;Pooling=False"));
             services.AddExtCore(_extensionPath);
             services.AddControllersWithViews();
+            services.AddMvc(options => { options.EnableEndpointRouting = false; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,14 +50,26 @@ namespace ICoreWebApp.Core.Web
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapAreaControllerRoute("defaultIdentity", "Identity", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //    endpoints.MapAreaControllerRoute("Identity", "Identity", "Identity/{controller=Home}/{action=Index}/{id?}");
+            //});
 
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "Identity",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
             app.UseExtCore();
         }
     }

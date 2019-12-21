@@ -10,5 +10,7 @@ namespace ICoreWeb.Data.Identity.Model
         public string Description { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime LastUpdatedTime { get; set; }
+
+        public virtual CorePermissionCategory Category { get; set; }
     }
 }

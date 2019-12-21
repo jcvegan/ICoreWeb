@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ICoreWeb.Data.Common.Model.Paging;
 using ICoreWeb.Data.Identity.Db.Model;
 using ICoreWeb.Data.Identity.Manager;
 using ICoreWeb.Data.Identity.Model;
@@ -46,6 +48,12 @@ namespace ICoreWeb.Data.Identity.Service
             _dbContext.Permissions.Add(permission);
 
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IQueryable<CorePermission>> GetPermissionsAsync(PageFilterModel filter, CancellationToken cancellationToken = new CancellationToken())
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            return await Task.FromResult(filter.ApplyFilter(_dbContext.Permissions.AsQueryable()));
         }
     }
 }

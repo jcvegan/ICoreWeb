@@ -1,10 +1,5 @@
-﻿// Jcvegan.com - Juan Vega
-// ICoreWebApp.Core.Web 2019
-// PermissionsController.cs
-// Todos los derechos reservados
-
-using System.Threading.Tasks;
-using ICoreWeb.Data.Identity.Manager;
+﻿using System.Threading.Tasks;
+using ICoreWeb.Data.Common.Model.Paging;
 using ICoreWeb.Data.Identity.Service.Interface;
 using ICoreWebApp.Core.Web.Areas.Identity.Models.Permissions;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +20,10 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
         }
 
         [Route("")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index([FromQuery]int size = 50,[FromQuery] int page = 1)
         {
-            return View();
+            var filter = new DefaultPageFilterModel {PageSize = size, CurrentPage = page - 1};
+            return await Task.Run(async () => View(await _permissionDataService.GetPermissionsAsync(filter)));
         }
 
         [Route("Create")]

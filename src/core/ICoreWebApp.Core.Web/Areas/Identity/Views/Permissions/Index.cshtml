@@ -1,6 +1,57 @@
-﻿@{
+﻿@model IQueryable<ICoreWeb.Data.Identity.Model.CorePermission>
+@{
     Layout = "_Layout";
 }
 <div class="ks-page-header">
     <section class="ks-title">Permissions</section>
+</div>
+<div class="ks-page-content">
+
+                @if (Model == null)
+                {
+                    <div class="ks-view ks-empty">
+                        <span class="ks-icon fa fa-2x fa-key"></span>
+                    </div>
+                }
+                else
+                {
+                    <div class="ks-page-content-body">
+                        <div class="ks-nav-body-wrapper">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <table class="table table-bordered table-striped stacktable small-only">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th class="d-sm-block">Description</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach (var permission in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="@Url.Action("View", "Permissions", new {id = permission.Id, Area = "Identity"})">
+                                                        @permission.Name
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a>
+                                                        @permission.Category.Name
+                                                    </a>
+                                                </td>
+                                                <td>@permission.Description</td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 </div>
