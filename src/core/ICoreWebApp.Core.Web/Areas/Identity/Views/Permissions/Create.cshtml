@@ -2,11 +2,7 @@
 @{
     Layout = "_Layout";
 }
-<div class="ks-page-header">
-    <section class="ks-title">
-        <h3>Permissions</h3>
-    </section>
-</div>
+<vc:title header="Create Permission"></vc:title>
 <div class="ks-page-content">
     <div class="ks-page-content-body">
         <div class="ks-nav-body-wrapper">
@@ -20,7 +16,10 @@
                                     <div class="form-group row">
                                         <label asp-for="CategoryId" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 hidden-xs-up form-control-label">Category</label>
                                         <div class="col-sm-10 col-xs-12">
-                                            <select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))"></select>
+                                            <div class="input-group">
+                                                <select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))"></select>
+                                                <a class="btn btn-outline-primary" href="@Url.Action("Create","PermissionCategories",new {Area = "Identity"})">New Category</a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -35,8 +34,8 @@
                                             <textarea class="form-control" asp-for="Description"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-xl-offset-2 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                                    <div class="form-group row">
+                                        <div class="col-xs-push-2 col-xl-push-2 col-lg-push-2 col-md-push-2 col-sm-push-2">
                                             <button type="submit" class="btn btn-success">Create Permission</button>
                                         </div>
                                     </div>

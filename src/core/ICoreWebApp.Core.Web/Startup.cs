@@ -1,4 +1,5 @@
 using ExtCore.WebApplication.Extensions;
+using ICoreWeb.Common.Components.Engine;
 using ICoreWeb.Data.Identity.Service.Initializer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,9 +13,10 @@ namespace ICoreWebApp.Core.Web
     public class Startup
     {
         private readonly string _extensionPath = string.Empty;
-
+        private IWebHostEnvironment _environment;
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
+            _environment = environment;
             _extensionPath = environment.ContentRootPath + configuration["Extensions:Path"];
             Configuration = configuration;
         }
@@ -28,6 +30,10 @@ namespace ICoreWebApp.Core.Web
             services.AddExtCore(_extensionPath);
             services.AddControllersWithViews();
             services.AddMvc(options => { options.EnableEndpointRouting = false; });
+                //.AddViewOptions(options =>
+                //{
+                //    options.ViewEngines.Insert(0, new WebCoreAppViewEngine(_environment));
+                //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

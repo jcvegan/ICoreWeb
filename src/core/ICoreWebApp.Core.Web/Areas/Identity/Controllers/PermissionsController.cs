@@ -22,7 +22,7 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
         [Route("")]
         public async Task<IActionResult> Index([FromQuery]int size = 50,[FromQuery] int page = 1)
         {
-            var filter = new DefaultPageFilterModel {PageSize = size, CurrentPage = page - 1};
+            var filter = new DefaultPageFilterModel {PageSize = size, CurrentPage = page};
             return await Task.Run(async () => View(await _permissionDataService.GetPermissionsAsync(filter)));
         }
 
