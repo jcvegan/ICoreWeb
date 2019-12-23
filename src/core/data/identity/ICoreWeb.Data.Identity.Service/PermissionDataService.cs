@@ -55,5 +55,10 @@ namespace ICoreWeb.Data.Identity.Service
             cancellationToken.ThrowIfCancellationRequested();
             return await Task.FromResult(filter.ApplyFilter(_dbContext.Permissions.Include(x => x.Category).AsQueryable()));
         }
+
+        public async Task<CorePermission> GetPermissionByIdAsync(Guid permissionId, CancellationToken cancellationToken = new CancellationToken())
+        {
+            return await _coreRoleManager.GetPermissionByIdAsync(permissionId, cancellationToken);
+        }
     }
 }

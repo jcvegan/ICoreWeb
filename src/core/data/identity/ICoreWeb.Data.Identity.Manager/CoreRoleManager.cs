@@ -1,9 +1,4 @@
-﻿// Jcvegan.com - Juan Vega
-// ICoreWeb.Data.Identity.Manager 2019
-// CoreRoleManager.cs
-// Todos los derechos reservados
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -80,7 +75,7 @@ namespace ICoreWeb.Data.Identity.Manager
         internal ICoreRoleStore CoreStore => (ICoreRoleStore) base.Store;
         public async Task<CorePermission> GetPermissionByIdAsync(Guid id, CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new NotImplementedException();
+            return await CoreStore.GetPermissionByIdAsync(id, cancellationToken);
         }
     }
 }

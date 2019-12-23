@@ -1,9 +1,4 @@
-﻿// Jcvegan.com - Juan Vega
-// ICoreWeb.Data.Identity.Store.Interface 2019
-// IPermissionStore.cs
-// Todos los derechos reservados
-
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ICoreWeb.Data.Identity.Model;
@@ -19,5 +14,9 @@ namespace ICoreWeb.Data.Identity.Store.Interface
             string description,
             Guid categoryId,
             CancellationToken cancellationToken);
+
+        Task<CorePermission> GetPermissionByIdAsync(
+            Guid id,
+            CancellationToken cancellationToken = new CancellationToken());
     }
 }

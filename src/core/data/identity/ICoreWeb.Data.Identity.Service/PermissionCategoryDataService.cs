@@ -1,9 +1,4 @@
-﻿// Jcvegan.com - Juan Vega
-// ICoreWeb.Data.Identity.Service 2019
-// PermissionCategoryDataService.cs
-// Todos los derechos reservados
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,9 +37,6 @@ namespace ICoreWeb.Data.Identity.Service
             return await Task.FromResult(_coreRoleManager.Categories);
         }
 
-        public async Task<CorePermissionCategory> GetPermissionByIdAsync(Guid permissionId)
-        {
-            
-        }
+        
     }
 }

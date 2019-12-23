@@ -47,7 +47,8 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> View(Guid id)
         {
-
+            var permission = await _permissionDataService.GetPermissionByIdAsync(id);
+            return await Task.Run(() => View(permission));
         }
     }
 }

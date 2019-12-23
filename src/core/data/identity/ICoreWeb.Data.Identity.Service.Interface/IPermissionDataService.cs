@@ -18,5 +18,9 @@ namespace ICoreWeb.Data.Identity.Service.Interface
         Task<IQueryable<CorePermission>> GetPermissionsAsync(
             PageFilterModel filter,
             CancellationToken cancellationToken = new CancellationToken());
+
+        Task<CorePermission> GetPermissionByIdAsync(
+            Guid permissionId,
+            CancellationToken cancellationToken = new CancellationToken());
     }
 }

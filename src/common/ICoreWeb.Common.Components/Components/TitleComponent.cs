@@ -13,6 +13,7 @@ namespace ICoreWeb.Common.Components.Components
             {
                 Header = header
             };
+            ViewData["Title"] = header;
             return View(model);
         }
     }

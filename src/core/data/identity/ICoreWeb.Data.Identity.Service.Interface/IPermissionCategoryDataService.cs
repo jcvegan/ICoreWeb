@@ -11,6 +11,5 @@ namespace ICoreWeb.Data.Identity.Service.Interface
         Task<bool> ExistsAsync(string name, CancellationToken cancellationToken = new CancellationToken());
         Task CreateAsync(string name, CancellationToken cancellationToken = new CancellationToken());
         Task<IEnumerable<CorePermissionCategory>> GetCategoriesAsync(CancellationToken cancellationToken = new CancellationToken());
-        Task<CorePermissionCategory> GetPermissionByIdAsync(Guid permissionId);
     }
 }

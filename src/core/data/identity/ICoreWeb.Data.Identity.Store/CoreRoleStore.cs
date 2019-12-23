@@ -1,8 +1,4 @@
-﻿// Jcvegan.com - Juan Vega
-// ICoreWeb.Data.Identity.Store 2019
-// CoreRoleStore.cs
-// Todos los derechos reservados
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,6 +104,17 @@ namespace ICoreWeb.Data.Identity.Store
         public async Task<CorePermission> CreatePermissionAsync(string name, string description, Guid categoryId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<CorePermission> GetPermissionByIdAsync(Guid id, CancellationToken cancellationToken = new CancellationToken())
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            
+            var permission = _dbContext.Permissions
+                .Include(x => x.Category)
+                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken);
+
+            return await permission;
         }
     }
 }
