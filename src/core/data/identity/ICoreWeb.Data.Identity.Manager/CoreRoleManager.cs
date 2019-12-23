@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ICoreWeb.Data.Identity.Manager
 {
-    public class CoreRoleManager : RoleManager<CoreRole>, ICoreRoleManager {
+    public class CoreRoleManager : RoleManager<CoreRole>, ICoreRoleManager, IPermissionManager {
         
         public CoreRoleManager(
             IRoleStore<CoreRole> store,
@@ -78,5 +78,9 @@ namespace ICoreWeb.Data.Identity.Manager
         public IQueryable<CorePermissionCategory> Categories => CoreStore.PermissionCategory;
 
         internal ICoreRoleStore CoreStore => (ICoreRoleStore) base.Store;
+        public async Task<CorePermission> GetPermissionByIdAsync(Guid id, CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
     }
 }

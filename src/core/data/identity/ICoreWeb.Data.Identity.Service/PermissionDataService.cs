@@ -53,7 +53,7 @@ namespace ICoreWeb.Data.Identity.Service
         public async Task<IQueryable<CorePermission>> GetPermissionsAsync(PageFilterModel filter, CancellationToken cancellationToken = new CancellationToken())
         {
             cancellationToken.ThrowIfCancellationRequested();
-            return await Task.FromResult(filter.ApplyFilter(_dbContext.Permissions.AsQueryable()));
+            return await Task.FromResult(filter.ApplyFilter(_dbContext.Permissions.Include(x => x.Category).AsQueryable()));
         }
     }
 }

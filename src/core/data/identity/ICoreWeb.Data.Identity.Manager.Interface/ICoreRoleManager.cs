@@ -1,8 +1,4 @@
-﻿// Jcvegan.com - Juan Vega
-// ICoreWeb.Data.Identity.Manager.Interface 2019
-// ICoreRoleManager.cs
-// Todos los derechos reservados
-
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,5 +26,12 @@ namespace ICoreWeb.Data.Identity.Manager.Interface
             CancellationToken cancellationToken = new CancellationToken());
 
         IQueryable<CorePermissionCategory> Categories { get; }
+
+        
+    }
+
+    public interface IPermissionManager
+    {
+        Task<CorePermission> GetPermissionByIdAsync(Guid id,CancellationToken cancellationToken = new CancellationToken());
     }
 }

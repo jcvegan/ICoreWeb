@@ -18,7 +18,9 @@
                                         <div class="col-sm-10 col-xs-12">
                                             <div class="input-group">
                                                 <select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))"></select>
-                                                <a class="btn btn-outline-primary" href="@Url.Action("Create","PermissionCategories",new {Area = "Identity"})">New Category</a>
+                                                <div class="input-group-append">
+                                                    <a class="btn btn-outline-primary" href="@Url.Action("Create","PermissionCategories",new {Area = "Identity"})">New Category</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

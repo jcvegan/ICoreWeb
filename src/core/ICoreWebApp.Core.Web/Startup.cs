@@ -28,7 +28,7 @@ namespace ICoreWebApp.Core.Web
         {
             services.AddCoreServices(options => options.UseSqlServer("Data Source=(local);Initial Catalog=IWebCore;User ID=sa;Password=juancarlos1911+;Pooling=False"));
             services.AddExtCore(_extensionPath);
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc(options => { options.EnableEndpointRouting = false; });
                 //.AddViewOptions(options =>
                 //{

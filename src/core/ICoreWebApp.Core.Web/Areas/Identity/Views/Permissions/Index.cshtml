@@ -2,18 +2,22 @@
 @{
     Layout = "_Layout";
 }
-<div class="ks-page-header">
-    <section class="ks-title">Permissions</section>
-</div>
+<vc:title header="Permissions"></vc:title>
 <div class="ks-page-content">
     <div class="ks-page-content-body">
         <div class="ks-nav-body-wrapper">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-outline-success" href="@Url.Action("Create","Permissions",new {Area = "Identity"})"><span class="fas fa-plus"></span> New Permission</a>
+                    </div>
+                </div>
+                <div class="row">
                     <table class="table table-bordered table-striped stacktable small-only">
                         <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Category</th>
                             <th class="d-sm-block">Description</th>
                             <th>Actions</th>
                         </tr>

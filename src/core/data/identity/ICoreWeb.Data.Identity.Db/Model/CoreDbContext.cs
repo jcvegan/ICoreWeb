@@ -6,6 +6,7 @@
 using System;
 using ExtCore.Data.Abstractions;
 using ICoreWeb.Data.Identity.Model;
+using ICoreWeb.Data.Identity.Model.Design;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,13 @@ namespace ICoreWeb.Data.Identity.Db.Model
         public CoreDbContext(DbContextOptions<CoreDbContext> options) : base(options)
         {
             
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new CorePermissionDesign());
+            builder.ApplyConfiguration(new CorePermissionCategoryDesign());
         }
     }
 }
