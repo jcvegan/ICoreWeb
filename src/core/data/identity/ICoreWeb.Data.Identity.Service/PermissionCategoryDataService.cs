@@ -3,6 +3,7 @@
 // PermissionCategoryDataService.cs
 // Todos los derechos reservados
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,6 +40,11 @@ namespace ICoreWeb.Data.Identity.Service
         public async Task<IEnumerable<CorePermissionCategory>> GetCategoriesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             return await Task.FromResult(_coreRoleManager.Categories);
+        }
+
+        public async Task<CorePermissionCategory> GetPermissionByIdAsync(Guid permissionId)
+        {
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using ICoreWeb.Data.Common.Model.Paging;
 using ICoreWeb.Data.Identity.Service.Interface;
 using ICoreWebApp.Core.Web.Areas.Identity.Models.Permissions;
@@ -41,6 +42,12 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers
         {
             await _permissionDataService.CreateAsync(model.CategoryId, model.Name, model.Description);
             return await Task.Run(() => RedirectToAction(""));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> View(Guid id)
+        {
+
         }
     }
 }
