@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ICoreWebApp.Core.Web
 {
@@ -34,6 +36,15 @@ namespace ICoreWebApp.Core.Web
                 //{
                 //    options.ViewEngines.Insert(0, new WebCoreAppViewEngine(_environment));
                 //});
+            services.AddSwaggerGen(setup =>
+            {
+                setup.SwaggerDoc("Api",new OpenApiInfo()
+                {
+                    Title = "My API",
+                    Description = "My Api for all managements",
+                    Version = "v1.0.0"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +60,10 @@ namespace ICoreWebApp.Core.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

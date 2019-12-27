@@ -38,7 +38,9 @@
                                 </td>
                                 <td>@permission.Description</td>
                                 <td>
-
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Role Actions">
+                                        <a class="btn btn-primary" role="button" aria-label="View details of @permission.Name" href="@Url.Action("View","Permissions",new {Area="Identity", id=@permission.Id})"><span class="far fa-eye"></span></a>
+                                    </div>
                                 </td>
                             </tr>
                         }

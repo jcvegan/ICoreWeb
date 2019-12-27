@@ -23,6 +23,11 @@ namespace ICoreWeb.Data.Identity.Manager
 
         }
 
+        public override Task<IdentityResult> CreateAsync(CoreRole role)
+        {
+            return base.CreateAsync(role);
+        }
+
         public async Task<IdentityResult> CreatePermissionCategoryAsync(string categoryName, CancellationToken cancellationToken = new CancellationToken())
         {
             try
