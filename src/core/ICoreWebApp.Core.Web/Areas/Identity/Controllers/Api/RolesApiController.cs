@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using ICoreWeb.Data.Common.Model.Paging;
 using ICoreWeb.Data.Identity.Service.Interface;
+using ICoreWebApp.Core.Web.Areas.Identity.Models.Api.Roles;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers.Api
@@ -20,6 +21,16 @@ namespace ICoreWebApp.Core.Web.Areas.Identity.Controllers.Api
         {
             var roles = await _roleDataService.GetRolesAsync(filterModel);
             return await Task.Run(() => Json(roles));
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> CreateRole([FromBody] CreateRoleModel model)
+        {
+            if (!ModelState.IsValid)
+                return await Task.Run(BadRequest);
+
+            await _roleDataService.CreateRoleAsync(model.Name, model.Description);
+            return await Task.Run(Ok);
         }
     }
 }

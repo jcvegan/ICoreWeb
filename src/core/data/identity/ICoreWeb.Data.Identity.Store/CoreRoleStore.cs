@@ -22,7 +22,19 @@ namespace ICoreWeb.Data.Identity.Store
         }
         public override async Task<IdentityResult> CreateAsync(CoreRole role, CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new NotImplementedException();
+            var existingRole = await FindByNameAsync(role.Name.Normalize(), cancellationToken);
+            if(existingRole != null)
+                return IdentityResult.Failed(new IdentityError(){Code = "ERRROLE001",Description = "The name of the role already exist"});
+
+            if(role.Id == Guid.Empty)
+                role.Id = Guid.NewGuid();
+
+            cancellationToken.ThrowIfCancellationRequested();
+
+            _dbContext.Roles.Add(role);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return IdentityResult.Success;
         }
 
         public override async Task<IdentityResult> UpdateAsync(CoreRole role, CancellationToken cancellationToken = new CancellationToken())
@@ -42,7 +54,9 @@ namespace ICoreWeb.Data.Identity.Store
 
         public override async Task<CoreRole> FindByNameAsync(string normalizedName, CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            var role = _dbContext.Roles.FirstOrDefaultAsync(role => role.NormalizedName == normalizedName);
+            return await role;
         }
 
         public override async Task<IList<Claim>> GetClaimsAsync(CoreRole role, CancellationToken cancellationToken = new CancellationToken())

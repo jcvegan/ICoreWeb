@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ICoreWeb.Data.Common.Model.Paging;
 using ICoreWeb.Data.Identity.Model;
+using ICoreWeb.Data.Identity.Service.Model;
 
 namespace ICoreWeb.Data.Identity.Service.Interface
 {
@@ -15,7 +16,7 @@ namespace ICoreWeb.Data.Identity.Service.Interface
         Task<bool> ExistRoleByIdAsync(Guid roleId, CancellationToken cancellationToken = new CancellationToken());
         Task<bool> ExistRoleByNameAsync(string roleName, CancellationToken cancellationToken = new CancellationToken());
 
-        Task<IEnumerable<CoreRole>> GetRolesAsync(
+        Task<IEnumerable<Role>> GetRolesAsync(
             DefaultPageFilterModel paging,
             CancellationToken cancellationToken = new CancellationToken());
 

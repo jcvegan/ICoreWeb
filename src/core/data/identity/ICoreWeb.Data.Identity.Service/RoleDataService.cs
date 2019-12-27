@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ICoreWeb.Data.Common.Model.Paging;
@@ -7,6 +8,7 @@ using ICoreWeb.Data.Identity.Db.Model;
 using ICoreWeb.Data.Identity.Manager;
 using ICoreWeb.Data.Identity.Model;
 using ICoreWeb.Data.Identity.Service.Interface;
+using ICoreWeb.Data.Identity.Service.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace ICoreWeb.Data.Identity.Service
@@ -54,7 +56,8 @@ namespace ICoreWeb.Data.Identity.Service
                     {ClaimType = "PermissionsInRole", ClaimValue = "0", RoleId = role.Id});
                 await _dbContext.SaveChangesAsync(cancellationToken);
             }
-                
+
+            var permissions = _dbContext.Permissions.ToListAsync();
         }
 
         public async Task<CoreRole> GetRoleByIdAsync(Guid roleId, CancellationToken cancellationToken = new CancellationToken())
@@ -85,9 +88,29 @@ namespace ICoreWeb.Data.Identity.Service
             return await existRole;
         }
 
-        public async Task<IEnumerable<CoreRole>> GetRolesAsync(DefaultPageFilterModel paging, CancellationToken cancellationToken = new CancellationToken())
+        public async Task<IEnumerable<Role>> GetRolesAsync(DefaultPageFilterModel paging, CancellationToken cancellationToken = new CancellationToken())
         {
-            return await _dbContext.Roles.ToListAsync(cancellationToken);
+            var rolesFromDb = _dbContext.Roles.AsQueryable();
+            cancellationToken.ThrowIfCancellationRequested();
+            if (paging != null)
+                rolesFromDb = paging.ApplyFilter(rolesFromDb);
+
+            var roles = rolesFromDb.Select(role => new Role()
+            {
+                Id = role.Id,
+                Name = role.Name,
+                Description = role.Description,
+                CreatedTime = GetCreatedTimeOfRoleById(role.Id)
+            });
+            return await Task.FromResult(roles.ToList());
+        }
+
+        private DateTime GetCreatedTimeOfRoleById(Guid roleId)
+        {
+            var claim = _dbContext.RoleClaims.FirstOrDefault(claim =>
+                claim.RoleId == roleId && claim.ClaimType == "CreatedTime");
+            var createdTime = DateTime.Parse(claim.ClaimValue);
+            return createdTime;
         }
 
         public async Task RenameRole(Guid roleId, string newRoleName, CancellationToken cancellationToken = new CancellationToken())
